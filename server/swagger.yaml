@@ -1,0 +1,288 @@
+openapi: 3.0.0
+info:
+  title: JOBS API 2.0
+  contact: {}
+  version: "1.0"
+servers:
+  - url: https://jobs-api-a95c.onrender.com/api/v1
+    variables: {}
+  - url: http://localhost:3000/api/v1
+    variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register user
+      operationId: Registeruser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/RegisteruserRequest"
+                - example:
+                    name: susan
+                    email: anna@gmail.com
+                    password: password
+            example:
+              name: susan
+              email: anna@gmail.com
+              password: password
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login user
+      operationId: Loginuser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/LoginuserRequest"
+                - example:
+                    email: zavedhussain@gmail.com
+                    password: password
+            example:
+              email: zavedhussain@gmail.com
+              password: password
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security: []
+  /jobs:
+    get:
+      tags:
+        - Jobs
+      summary: authenticate and get jobs
+      operationId: authenticateandgetjobs
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /jobs/{jobId}:
+    parameters:
+      - in: path
+        name: jobId
+        schema:
+          type: string
+        required: true
+        description: The job id
+    get:
+      tags:
+        - Jobs
+      summary: get a job
+      operationId: getajob
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /my-jobs:
+    post:
+      tags:
+        - MyJobs
+      summary: create my job
+      operationId: createmyjob
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/createmyjobrequest"
+                - example:
+                    company: tcs
+                    position: frontend developer
+            example:
+              company: tcs
+              position: frontend developer
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    get:
+      tags:
+        - MyJobs
+      summary: get all my jobs
+      operationId: getallmyjobs
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /my-jobs/{jobId}:
+    parameters:
+      - in: path
+        name: jobId
+        schema:
+          type: string
+        required: true
+        description: The job id
+    patch:
+      tags:
+        - MyJobs
+      summary: update my job
+      operationId: updatemyjob
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/updatemyjobrequest"
+                - example:
+                    company: infosys
+                    position: software developer
+                    status: pending
+            example:
+              company: infosys
+              position: software developer
+              status: pending
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+
+    delete:
+      tags:
+        - MyJobs
+      summary: delete my job
+      operationId: deletemyjob
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+
+    get:
+      tags:
+        - MyJobs
+      summary: get single my job
+      operationId: getsinglemyjob
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+components:
+  schemas:
+    RegisteruserRequest:
+      title: RegisteruserRequest
+      required:
+        - name
+        - email
+        - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: susan
+        email: anna@gmail.com
+        password: password
+    LoginuserRequest:
+      title: LoginuserRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: zavedhussain@gmail.com
+        password: password
+    createmyjobrequest:
+      title: createmyjobrequest
+      required:
+        - company
+        - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: tcs
+        position: frontend developer
+    updatemyjobrequest:
+      title: updatemyjobrequest
+      required:
+        - company
+        - position
+        - status
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+        status:
+          type: string
+      example:
+        company: infosys
+        position: software developer
+        status: pending
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+  - name: Misc
+    description: ""
+  - name: Auth
+    description: ""
+  - name: Jobs
+    description: ""
+  - name: MyJobs
+    description: ""
