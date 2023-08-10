@@ -22,7 +22,7 @@ const filterInitialState = {
   sortOptions: ["latest", "oldest", "a-z", "z-a"],
 };
 
-const url = "http://localhost:3000/api/v1";
+const url = "https://jobtracker-api-5fv4.onrender.com/api/v1";
 const initialState = {
   isLoading: false,
   jobs: [],

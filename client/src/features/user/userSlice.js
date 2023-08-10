@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const url = "http://localhost:3000/api/v1";
+const url = "https://jobtracker-api-5fv4.onrender.com/api/v1";
 
 const getUserFromLocalStorage = () => {
   const result = localStorage.getItem("user");
